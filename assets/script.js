@@ -72,12 +72,26 @@ function checkModel() {
 }
 
 /* -------------------------------------------------------
-   FUNKCJA 4: Status EA (MT5) — placeholder
+   FUNKCJA 4: Status EA (MT5) — prawdziwe sprawdzanie
 ------------------------------------------------------- */
-function checkEA() {
+async function checkEA() {
   const eaItem = document.querySelector("#status li:nth-child(4)");
-  eaItem.textContent = "EA (MT5): offline (placeholder)";
-  eaItem.className = "status-offline";
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/ea/status");
+    const data = await response.json();
+
+    if (data.status === "online") {
+      eaItem.textContent = "EA (MT5): OK";
+      eaItem.className = "status-ok";
+    } else {
+      eaItem.textContent = "EA (MT5): offline";
+      eaItem.className = "status-offline";
+    }
+  } catch (err) {
+    eaItem.textContent = "EA (MT5): offline";
+    eaItem.className = "status-offline";
+  }
 }
 
 /* -------------------------------------------------------
@@ -110,4 +124,5 @@ updateStatus();
 checkBackend();
 checkModel();
 checkEA();
+
 
