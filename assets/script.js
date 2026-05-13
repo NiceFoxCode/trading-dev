@@ -52,7 +52,7 @@ setInterval(() => {
 async function checkBackend() {
   try {
     // docelowy endpoint: http://localhost:8000/heartbeat
-    const response = await fetch("https://example.com/heartbeat");
+    const response = await fetch("http://127.0.0.1:8000/heartbeat");
 
     if (!response.ok) {
       throw new Error("Backend offline");
