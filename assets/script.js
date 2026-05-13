@@ -90,5 +90,3 @@ setInterval(() => {
 updateStatus();
 checkBackend();
 checkModel();
-
-
