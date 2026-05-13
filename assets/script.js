@@ -41,5 +41,9 @@ function updateStatus() {
 }
 
 updateStatus();
+setInterval(() => {
+  console.log("Odświeżam statusy...");
+  updateStatus();
+}, 5000);
 
 
