@@ -78,4 +78,10 @@ async function checkBackend() {
     backendItem.className = "status-offline";
   }
 }
+function checkModel() {
+  const modelItem = document.querySelector("#status li:nth-child(3)");
+  modelItem.textContent = "Model ML: offline (placeholder)";
+  modelItem.className = "status-offline";
+}
+
 
