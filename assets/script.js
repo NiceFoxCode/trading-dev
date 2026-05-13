@@ -45,6 +45,9 @@ setInterval(() => {
   console.log("Odświeżam statusy...");
   updateStatus();
 }, 5000);
+setInterval(() => {
+  checkBackend();
+}, 5000);
 
 async function checkBackend() {
   try {
