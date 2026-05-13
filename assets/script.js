@@ -21,4 +21,25 @@ function updateStatus() {
   });
 }
 
+function updateStatus() {
+  const items = document.querySelectorAll("#status li");
+
+  items.forEach(item => {
+    if (item.textContent.includes("Frontend")) {
+      item.textContent = "Frontend: OK";
+      item.className = "status-ok";
+    }
+    if (item.textContent.includes("Backend")) {
+      item.textContent = "Backend: offline (symulacja)";
+      item.className = "status-offline";
+    }
+    if (item.textContent.includes("Model ML")) {
+      item.textContent = "Model ML: offline (symulacja)";
+      item.className = "status-offline";
+    }
+  });
+}
+
 updateStatus();
+
+
