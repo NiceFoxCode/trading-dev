@@ -46,4 +46,33 @@ setInterval(() => {
   updateStatus();
 }, 5000);
 
+async function checkBackend() {
+  try {
+    // docelowy endpoint: http://localhost:8000/heartbeat
+    const response = await fetch("https://example.com/heartbeat");
+
+    if (!response.ok) {
+      throw new Error("Backend offline");
+    }
+
+    const data = await response.json();
+
+    // oczekiwany format:
+    // { status: "ok" }
+    const backendItem = document.querySelector("#status li:nth-child(2)");
+
+    if (data.status === "ok") {
+      backendItem.textContent = "Backend: OK";
+      backendItem.className = "status-ok";
+    } else {
+      backendItem.textContent = "Backend: problem";
+      backendItem.className = "status-offline";
+    }
+
+  } catch (err) {
+    const backendItem = document.querySelector("#status li:nth-child(2)");
+    backendItem.textContent = "Backend: offline";
+    backendItem.className = "status-offline";
+  }
+}
 
