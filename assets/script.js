@@ -6,7 +6,7 @@ info.textContent = "JS działa — dynamiczny tekst został dodany.";
 app.appendChild(info);
 
 /* -------------------------------------------------------
-   FUNKCJA 1: Status frontendu / backendu / modelu ML
+   FUNKCJA 1: Status frontendu / backendu / modelu ML / EA
 ------------------------------------------------------- */
 function updateStatus() {
   const items = document.querySelectorAll("#status li");
@@ -24,6 +24,11 @@ function updateStatus() {
 
     if (item.textContent.includes("Model ML")) {
       item.textContent = "Model ML: offline (symulacja)";
+      item.className = "status-offline";
+    }
+
+    if (item.textContent.includes("EA (MT5)")) {
+      item.textContent = "EA (MT5): offline (symulacja)";
       item.className = "status-offline";
     }
   });
@@ -67,6 +72,15 @@ function checkModel() {
 }
 
 /* -------------------------------------------------------
+   FUNKCJA 4: Status EA (MT5) — placeholder
+------------------------------------------------------- */
+function checkEA() {
+  const eaItem = document.querySelector("#status li:nth-child(4)");
+  eaItem.textContent = "EA (MT5): offline (placeholder)";
+  eaItem.className = "status-offline";
+}
+
+/* -------------------------------------------------------
    AUTOMATYCZNE ODŚWIEŻANIE STATUSÓW
 ------------------------------------------------------- */
 
@@ -81,12 +95,19 @@ setInterval(() => {
   checkBackend();
 }, 5000);
 
-// 3. Model ML (placeholder)
+// 3. Model ML
 setInterval(() => {
   checkModel();
 }, 5000);
 
-// Pierwsze wywołanie
+// 4. EA (MT5)
+setInterval(() => {
+  checkEA();
+}, 5000);
+
+// Pierwsze wywołania
 updateStatus();
 checkBackend();
 checkModel();
+checkEA();
+
